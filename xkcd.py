@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
-url = "https://xkcd.com/"
+url = "https://xkcd.com/2200/"
 
 
 def comicscraper():
@@ -12,9 +12,8 @@ def comicscraper():
     comicdiv = soup.find("div", {"id": "comic"})
     imagelink = "https://" + comicdiv.img["src"].replace("//", "")
     mycomics += imagelink
-    # print(mycomics)
-    with open("xkcd_comics.txt", mode="a") as schrijven:
-        schrijven.write(mycomics + "\n")
+    with open("xkcd_comics.txt", mode="a") as writer:
+        writer.write(mycomics + "\n")
         print("Succes")
 
 
@@ -28,6 +27,11 @@ def prevbutton():
 
 
 while True:
-    comicscraper()
+    try:
+        comicscraper()
+    except AttributeError:
+        print("Error: No image found.")
+    except TypeError:
+        print("Error: No image found.")
     url = prevbutton()
-    time.sleep(3)
+    time.sleep(10)
