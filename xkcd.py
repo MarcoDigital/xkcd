@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
-url = "https://xkcd.com/2200/"
+url = "https://xkcd.com/"
 
 
 def comicscraper():
